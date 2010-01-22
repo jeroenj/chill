@@ -331,7 +331,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1CAE56751109E68D005DE1A0</string>
+										<string>1CAE567F1109EA5C005DE1A0</string>
 										<key>history</key>
 										<array>
 											<string>1C3CC38310F8E2B10069B7C0</string>
@@ -542,14 +542,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CAE56761109E68D005DE1A0</string>
+		<string>1CAE567E1109EA38005DE1A0</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1CAE55581109A201005DE1A0</string>
 		<string>1CAE55591109A201005DE1A0</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1CD305DE10EA5ADE006418C4</string>
-		<string>/Users/jeroenjacobs/Development/MacRuby/RestClient/RestClient.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/jeroenjacobs/Development/MacRuby/RestClient/RestClient.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>-1680 189 1076 861 -1680 0 1680 1050 </string>
