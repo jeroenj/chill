@@ -1,0 +1,44 @@
+= REST Client
+
+Test RESTful services with this MacRuby application.
+It will display both the response body and headers. There is also a form builder in there to build your requests.
+
+== Requirements
+
+{MacRuby}[http://www.macruby.org/] 0.5 beta 2 or better
+
+== Usage
+
+=== Building
+
+Build application using Xcode 3.2.1 or higher 
+
+=== application
+
+* Enter your URL in the addresbar on top of the screen
+* Select your HTTP method (GET, POST, PUT or DELETE)
+* Click "Send"
+
+==== HTTP authentication
+
+This is currently supported but not fully implemented. Authentication in the url should work fine for now:
+http://foo:bar@www.myprotectedwebpage.be/
+
+== Getting it
+
+  git clone git://github.com/jeroenj/REST-Client.git 
+
+Downloadable packages will be available later
+
+== Note on Patches/Pull Requests
+ 
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== Copyright
+
+Copyright (c) 2010 Jeroen Jacobs, {redstorm sprl}[http://www.redstorm.be]. See LICENSE for details.
