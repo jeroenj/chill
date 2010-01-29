@@ -44,7 +44,7 @@
 
 /* Begin PBXBuildFile section */
 		1C283DF710F8D00F00E6B71A /* SplitViewDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1C283DF610F8D00F00E6B71A /* SplitViewDelegate.rb */; };
-		1CC0505C10EB8D2A00A6EDFA /* RestClient.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1CC0505B10EB8D2A00A6EDFA /* RestClient.rb */; };
+		1CC0505C10EB8D2A00A6EDFA /* Chill.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1CC0505B10EB8D2A00A6EDFA /* Chill.rb */; };
 		1CD4F0AE11008D0C00C9B6FB /* Wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4F0AD11008D0C00C9B6FB /* Wrapper.m */; };
 		1CD4F0DF1100A1C900C9B6FB /* parameter.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1CD4F0DE1100A1C900C9B6FB /* parameter.rb */; };
 		2BFA9DA710CDF852007972A1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFA9DA510CDF852007972A1 /* MainMenu.xib */; };
@@ -74,7 +74,7 @@
 		172754D5107598EA00D0347B /* stub_test.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = stub_test.rb; sourceTree = "<group>"; };
 		17D55CD81076A1A2008207BD /* run_suite.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = run_suite.rb; sourceTree = "<group>"; };
 		1C283DF610F8D00F00E6B71A /* SplitViewDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SplitViewDelegate.rb; sourceTree = "<group>"; };
-		1CC0505B10EB8D2A00A6EDFA /* RestClient.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = RestClient.rb; sourceTree = "<group>"; };
+		1CC0505B10EB8D2A00A6EDFA /* Chill.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Chill.rb; sourceTree = "<group>"; };
 		1CD4F0AB11008D0C00C9B6FB /* WrapperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapperDelegate.h; sourceTree = "<group>"; };
 		1CD4F0AC11008D0C00C9B6FB /* Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wrapper.h; sourceTree = "<group>"; };
 		1CD4F0AD11008D0C00C9B6FB /* Wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wrapper.m; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		4DE339F60D74FCDD00ADB6EE /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* RestClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Chill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 				1CD4F0AB11008D0C00C9B6FB /* WrapperDelegate.h */,
 				1CD4F0AC11008D0C00C9B6FB /* Wrapper.h */,
 				1CD4F0AD11008D0C00C9B6FB /* Wrapper.m */,
-				1CC0505B10EB8D2A00A6EDFA /* RestClient.rb */,
+				1CC0505B10EB8D2A00A6EDFA /* Chill.rb */,
 				1C283DF610F8D00F00E6B71A /* SplitViewDelegate.rb */,
 				1CD4F0DE1100A1C900C9B6FB /* parameter.rb */,
 			);
@@ -146,7 +146,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* RestClient.app */,
+				8D1107320486CEB800E47090 /* Chill.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,9 +195,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* RestClient */ = {
+		8D1107260486CEB800E47090 /* Chill */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "RestClient" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Chill" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -208,10 +208,10 @@
 			);
 			dependencies = (
 			);
-			name = RestClient;
+			name = Chill;
 			productInstallPath = "$(HOME)/Applications";
 			productName = RestClient;
-			productReference = 8D1107320486CEB800E47090 /* RestClient.app */;
+			productReference = 8D1107320486CEB800E47090 /* Chill.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -219,14 +219,14 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "RestClient" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Chill" */;
 			compatibilityVersion = "Xcode 3.0";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* RestClient */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* RestClient */,
+				8D1107260486CEB800E47090 /* Chill */,
 				172754BD107597F200D0347B /* Unit Tests */,
 				4D1A51A110A4FF5D0046A98A /* Compile */,
 				4D1A51A510A4FF640046A98A /* Embed */,
@@ -242,7 +242,7 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				4DE339F70D74FCDD00ADB6EE /* rb_main.rb in Resources */,
 				2BFA9DA710CDF852007972A1 /* MainMenu.xib in Resources */,
-				1CC0505C10EB8D2A00A6EDFA /* RestClient.rb in Resources */,
+				1CC0505C10EB8D2A00A6EDFA /* Chill.rb in Resources */,
 				1C283DF710F8D00F00E6B71A /* SplitViewDelegate.rb in Resources */,
 				1CD4F0DF1100A1C900C9B6FB /* parameter.rb in Resources */,
 			);
@@ -402,7 +402,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = RestClient;
+				PRODUCT_NAME = Chill;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -420,7 +420,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = RestClient;
+				PRODUCT_NAME = Chill;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -480,7 +480,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "RestClient" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Chill" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
@@ -489,7 +489,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "RestClient" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Chill" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

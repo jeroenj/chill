@@ -230,6 +230,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -277,8 +279,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>3</integer>
-									<integer>2</integer>
+									<integer>13</integer>
+									<integer>12</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -313,14 +315,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>WrapperDelegate.h</string>
+								<string>main.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -328,24 +328,24 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>WrapperDelegate.h</string>
+										<string>main.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1CF33C1C11133C51009AFE49</string>
+										<string>1CF33C2D11133D3D009AFE49</string>
 										<key>history</key>
 										<array>
 											<string>1C3CC38310F8E2B10069B7C0</string>
 											<string>1C3CC38410F8E2B10069B7C0</string>
 											<string>1CCFFE5A1100B54D00212F3D</string>
 											<string>1CAE561B1109D3FE005DE1A0</string>
-											<string>1CF33BB31112EF8E009AFE49</string>
-											<string>1CF33BB41112EF8E009AFE49</string>
 											<string>1CF33BB51112EF8E009AFE49</string>
 											<string>1CF33BE21112F4A9009AFE49</string>
 											<string>1CF33C151112F6FA009AFE49</string>
-											<string>1CF33C1B11133C51009AFE49</string>
-											<string>1CF33BEF1112F55A009AFE49</string>
+											<string>1CF33C2011133D22009AFE49</string>
+											<string>1CF33C2111133D22009AFE49</string>
+											<string>1CF33C2B11133D3D009AFE49</string>
+											<string>1CF33C2C11133D3D009AFE49</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -403,9 +403,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>1CF33B641112D5E7009AFE49</string>
+				<string>1CF33C2E11133D3D009AFE49</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>1CF33B651112D5E7009AFE49</string>
+				<string>1CF33C2F11133D3D009AFE49</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -543,12 +543,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CF33BC31112EF8E009AFE49</string>
-		<string>1CF33BC41112EF8E009AFE49</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1CD305DE10EA5ADE006418C4</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>/Users/jeroenjacobs/Development/MacRuby/RestClient/RestClient.xcodeproj</string>
+		<string>/Users/jeroenjacobs/Development/MacRuby/RestClient/Chill.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>-1606 219 1345 683 -1680 0 1680 1050 </string>
@@ -628,7 +624,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD305DE10EA5ADE006418C4</string>
-				<string>1CF33B661112D5E7009AFE49</string>
+				<string>1CF33C3011133D3D009AFE49</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

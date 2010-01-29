@@ -1,4 +1,4 @@
-class RestClient
+class Chill
   attr_accessor :request_url, :request_method, :output, :indicator, :parameters_table, :request_headers
 
   attr_accessor :engine
