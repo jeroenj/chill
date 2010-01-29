@@ -21,7 +21,8 @@ Build application using Xcode 3.2.1 or higher
 
 ==== HTTP authentication
 
-This is currently supported but not fully implemented. Authentication in the url should work fine for now:
+This is currently supported but not fully implemented. 
+Authentication in the url should work fine for now:
 http://foo:bar@www.myprotectedwebpage.be/
 
 == Getting it

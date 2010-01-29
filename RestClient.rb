@@ -126,14 +126,15 @@ class RestClient
   end
 
   def wrapperHasBadCredentials(wrapper)
+    #handle this in here by showing an overlay in which you can enter your credentials
     stop_indicator
-    alert = NSAlert.alertWithMessageText("Bad credentials!", defaultButton:"OK", alternateButton:nil, otherButton:nil, informativeTextWithFormat:nil)
+    alert = NSAlert.alertWithMessageText("Bad credentials!", defaultButton:"OK", alternateButton:nil, otherButton:nil, informativeTextWithFormat:"Please specify a valid username and password")
     alert.runModal
   end
 
   def wrapper(wrapper, didCreateResourceAtURL:url)
     stop_indicator
-    alert = NSAlert.alertWithMessageText("Resource created at #{url}", defaultButton:"OK", alternateButton:nil, otherButton:nil, informativeTextWithFormat:nil)
+    alert = NSAlert.alertWithMessageText("Resource created at #{url}", defaultButton:"OK", alternateButton:nil, otherButton:nil, informativeTextWithFormat:"")
     alert.runModal
   end
 
