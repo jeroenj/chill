@@ -1,3 +1,9 @@
+# OSX
 .DS_Store
-build
-Chill.xcodeproj
+
+# Xcode
+*.pbxuser
+*.mode1v3
+
+# Builds
+build/
