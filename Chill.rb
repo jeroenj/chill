@@ -1,5 +1,5 @@
 class Chill
-  attr_accessor :request_url, :request_method, :output, :indicator, :parameters_table, :request_headers
+  attr_accessor :request_url, :request_method, :output, :indicator, :parameters_table, :request_headers, :headers_tab_view
 
   attr_accessor :engine
   attr_accessor :parameters_datasource
@@ -122,6 +122,7 @@ class Chill
     if text
       output.string = text
       stop_indicator
+      show_response_tab
     end
   end
 
@@ -160,5 +161,9 @@ class Chill
   def stop_indicator
     indicator.setHidden(true)
     indicator.stopAnimation(self)
+  end
+  
+  def show_response_tab
+    headers_tab_view.selectLastTabViewItem(self)
   end
 end
