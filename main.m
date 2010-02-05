@@ -1,6 +1,6 @@
 //
 //  main.m
-//  RestClient
+//  Chill
 //
 //  Created by Jeroen Jacobs on 29/12/09.
 //  Copyright redstorm 2009. All rights reserved.
