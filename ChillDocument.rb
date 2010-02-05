@@ -1,11 +1,3 @@
-#
-# MyDocument.rb
-# Chill
-#
-# Created by Jeroen Jacobs on 05/02/10.
-# Copyright redstorm 2010. All rights reserved.
-#
-
 class ChillDocument < NSDocument
 	
 	# Name of nib containing document window
