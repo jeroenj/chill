@@ -1,29 +1,25 @@
-= REST Client
+= Chill
 
-Test RESTful services with this MacRuby application.
-It will display both the response body and headers. There is also a form builder in there to build your requests.
+Chill allows you to easily test any REST action on any application. This can be very helpful when you have the need to implement an external (REST) service in your application or when you are developing your own REST hooks.
+The big benefit is that you are able to construct your requests with the built in parameter builder.
+After the request has been done it will give you access to the response headers too.
 
 == Requirements
 
-{MacRuby}[http://www.macruby.org/] 0.5 beta 2 or better
+{MacRuby}[http://www.macruby.org/] 0.5 or better
 
 == Usage
 
 === Building
 
-Build application using Xcode 3.2.1 or higher 
+* Open project with Xcode 3.2.1 or higher
+* Build it
 
-=== application
+=== Application
 
 * Enter your URL in the addresbar on top of the screen
 * Select your HTTP method (GET, POST, PUT or DELETE)
 * Click "Send"
-
-==== HTTP authentication
-
-This is currently supported but not fully implemented. 
-Authentication in the url should work fine for now:
-http://foo:bar@www.myprotectedwebpage.be/
 
 == Getting it
 
