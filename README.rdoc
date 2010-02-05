@@ -25,7 +25,7 @@ After the request has been done it will give you access to the response headers 
 
   git clone git://github.com/jeroenj/REST-Client.git 
 
-Downloadable packages will be available later
+See {Downloads}[http://github.com/jeroenj/chill/downloads] section for binary builds. Keep in mind that MacRuby is not bundled in these binaries yet.
 
 == Note on Patches/Pull Requests
  
