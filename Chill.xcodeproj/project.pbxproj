@@ -114,7 +114,6 @@
 				1CD4F0AD11008D0C00C9B6FB /* Wrapper.m */,
 				1CC0505B10EB8D2A00A6EDFA /* Chill.rb */,
 				1C283DF610F8D00F00E6B71A /* SplitViewDelegate.rb */,
-				1CD4F0DE1100A1C900C9B6FB /* parameter.rb */,
 				1C40D8F6111C49F50056A5B8 /* ChillDocument.rb */,
 			);
 			name = Classes;
@@ -156,9 +155,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1C8D617711255EC400AF8912 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1CD4F0DE1100A1C900C9B6FB /* parameter.rb */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* RestClient */ = {
 			isa = PBXGroup;
 			children = (
+				1C8D617711255EC400AF8912 /* Models */,
 				172754AE1075979200D0347B /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
