@@ -14,6 +14,7 @@ After the request has been done it will give you access to the response headers 
 
 * Open project with Xcode 3.2.1 or higher
 * Build it
+* Use the "Compile & Embed" target after building your release to make it run on machines that don't have MacRuby installed
 
 === Application
 
