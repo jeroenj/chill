@@ -28,6 +28,9 @@ After the request has been done it will give you access to the response headers 
 
 See {Downloads}[http://github.com/jeroenj/chill/downloads] section for binary builds. Keep in mind that MacRuby is not bundled in these binaries yet.
 
+== Issue Tracker
+You can find this in {Lighthouse}[http://redstorm.lighthouseapp.com/projects/46742-chill/overview]
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
