@@ -1,3 +1,3 @@
 class Parameter
-	attr_accessor :name, :value
+  attr_accessor :name, :value
 end

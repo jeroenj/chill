@@ -1,8 +1,8 @@
 class ChillDocument < NSPersistentDocument
   attr_accessor :request_url, :request_method, :output, :indicator, :request_headers, :headers_tab_view
-	
+
   attr_accessor :engine
-  
+
   def init
     if super
       @engine = Wrapper.new
@@ -15,29 +15,28 @@ class ChillDocument < NSPersistentDocument
     @http_headers = []
     @request_headers.dataSource = self
   end
-  
-	# Name of nib containing document window
-	def windowNibName
-		'ChillDocument'
-	end
-	
-	# Document data representation for saving (return NSData)
-	def dataOfType(type, error:outError)
-		outError.assign(NSError.errorWithDomain(NSOSStatusErrorDomain, code:-4, userInfo:nil))
-		nil
-	end
 
-	# Read document from data (return non-nil on success)
-	def readFromData(data, ofType:type, error:outError)
-		outError.assign(NSError.errorWithDomain(NSOSStatusErrorDomain, code:-4, userInfo:nil))
-		nil
-	end
+  # Name of nib containing document window
+  def windowNibName
+    'ChillDocument'
+  end
 
-	# Return lowercase 'untitled', to comply with HIG
-	def displayName
-		fileURL ? super : super.sub(/^[[:upper:]]/) {|s| s.downcase}
-	end
+  # Document data representation for saving (return NSData)
+  def dataOfType(type, error:outError)
+    outError.assign(NSError.errorWithDomain(NSOSStatusErrorDomain, code:-4, userInfo:nil))
+    nil
+  end
 
+  # Read document from data (return non-nil on success)
+  def readFromData(data, ofType:type, error:outError)
+    outError.assign(NSError.errorWithDomain(NSOSStatusErrorDomain, code:-4, userInfo:nil))
+    nil
+  end
+
+  # Return lowercase 'untitled', to comply with HIG
+  def displayName
+    fileURL ? super : super.sub(/^[[:upper:]]/) {|s| s.downcase}
+  end
 
 
 
@@ -65,6 +64,8 @@ class ChillDocument < NSPersistentDocument
   end
 
 
+
+
   # GUI Actions
   def rest_call(sender)
     url = NSURL.URLWithString(request_url.stringValue)
@@ -75,6 +76,7 @@ class ChillDocument < NSPersistentDocument
 
     @engine.sendRequestTo(url, usingVerb:verb, withParameters:request_parameters)
   end
+
 
 
 
@@ -101,7 +103,7 @@ class ChillDocument < NSPersistentDocument
   end
 
   def wrapperHasBadCredentials(wrapper)
-    #handle this in here by showing an overlay in which you can enter your credentials
+    # handle this in here by showing an overlay in which you can enter your credentials
     stop_indicator
     alert = NSAlert.alertWithMessageText("Bad credentials!", defaultButton:"OK", alternateButton:nil, otherButton:nil, informativeTextWithFormat:"Please specify a valid username and password")
     alert.runModal
@@ -120,8 +122,8 @@ class ChillDocument < NSPersistentDocument
   end
 
   #def wrapper(wrapper, didReceiveStatusCode:statusCode)
-  #	stop_indicator
-  #	alert = NSAlert.alertWithMessageText("Status code not OK", defaultButton:"OK", alternateButton:nil, otherButton:nil, informativeTextWithFormat:"I am an alert!")
+  # stop_indicator
+  # alert = NSAlert.alertWithMessageText("Status code not OK", defaultButton:"OK", alternateButton:nil, otherButton:nil, informativeTextWithFormat:"I am an alert!")
   # alert.runModal
   #end
 
@@ -136,11 +138,11 @@ class ChillDocument < NSPersistentDocument
     indicator.setHidden(true)
     indicator.stopAnimation(self)
   end
-  
+
   def show_response_tab
     headers_tab_view.selectLastTabViewItem(self)
   end
-  
+
   def request_parameters
     parameters = {}
     begin
@@ -148,10 +150,10 @@ class ChillDocument < NSPersistentDocument
 
       all_parameters_request = NSFetchRequest.alloc.init
       all_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:context)
-    
+
       error = nil
       array = context.executeFetchRequest(all_parameters_request, error:error)
-    
+
       if array.size > 0
         array.each do |parameter|
           parameters[parameter.valueForKey('name')] = parameter.valueForKey('value') if parameter.valueForKey('name') && parameter.valueForKey('value')
