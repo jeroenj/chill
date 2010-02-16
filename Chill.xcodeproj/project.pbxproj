@@ -18,6 +18,17 @@
 			name = "Unit Tests";
 			productName = "Unit Tests";
 		};
+		1C2408F7112AED9A0097ABBF /* Compile & Embed */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 1C2408FC112AED9B0097ABBF /* Build configuration list for PBXAggregateTarget "Compile & Embed" */;
+			buildPhases = (
+				1C2408F6112AED9A0097ABBF /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Compile & Embed";
+			productName = "Compile & Embed";
+		};
 		4D1A51A110A4FF5D0046A98A /* Compile */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 4D1A51AB10A4FF6A0046A98A /* Build configuration list for PBXAggregateTarget "Compile" */;
@@ -244,6 +255,7 @@
 				172754BD107597F200D0347B /* Unit Tests */,
 				4D1A51A110A4FF5D0046A98A /* Compile */,
 				4D1A51A510A4FF640046A98A /* Embed */,
+				1C2408F7112AED9A0097ABBF /* Compile & Embed */,
 			);
 		};
 /* End PBXProject section */
@@ -278,6 +290,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/macruby Tests/run_suite.rb";
+		};
+		1C2408F6112AED9A0097ABBF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Custom embed target since normal embed does not completely work.\n# It will first compile and embed the MacRuby Framework, after that it will fix the embedded one.\n# http://blog.zottmann.org/post/347512473/xcode-macruby-embed-compile-fix\n\nPATH=\"$PATH:/usr/local/bin\" macruby_deploy --embed --compile \"$TARGET_BUILD_DIR/$PROJECT_NAME.app\"\n \ninstall_name_tool -change /Library/Frameworks/MacRuby.framework/Versions/0.5/usr/lib/libmacruby.dylib \"@executable_path/../Frameworks/MacRuby.framework/Versions/0.5/usr/lib/libmacruby.dylib\" \"$TARGET_BUILD_DIR/$PROJECT_NAME.app/Contents/MacOS/$PROJECT_NAME\"\n \nfor F in $TARGET_BUILD_DIR/$PROJECT_NAME.app/Contents/Resources/*.rbo; do\n  install_name_tool -change /Library/Frameworks/MacRuby.framework/Versions/0.5/usr/lib/libmacruby.dylib \"@executable_path/../Frameworks/MacRuby.framework/Versions/0.5/usr/lib/libmacruby.dylib\" \"$F\"\ndone";
 		};
 		4D1A51A010A4FF5D0046A98A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -365,6 +390,27 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PRODUCT_NAME = "Unit Tests";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1C2408F8112AED9A0097ABBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Compile & Embed";
+			};
+			name = Debug;
+		};
+		1C2408F9112AED9A0097ABBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Compile & Embed";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -482,6 +528,15 @@
 			buildConfigurations = (
 				172754BE107597F200D0347B /* Debug */,
 				172754BF107597F200D0347B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C2408FC112AED9B0097ABBF /* Build configuration list for PBXAggregateTarget "Compile & Embed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C2408F8112AED9A0097ABBF /* Debug */,
+				1C2408F9112AED9A0097ABBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
