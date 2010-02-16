@@ -1,0 +1,9 @@
+# OSX
+.DS_Store
+
+# Xcode
+*.pbxuser
+*.mode1v3
+
+# Builds
+build/
