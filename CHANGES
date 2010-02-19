@@ -1,4 +1,4 @@
-== repository
+== 0.0.3
  
 * Target to compile and embed MacRuby (Xcode)
 * Fixed some GUI glitches
