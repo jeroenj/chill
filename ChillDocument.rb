@@ -115,7 +115,7 @@ class ChillDocument < NSPersistentDocument
   def clear_response_parameters
     context = self.managedObjectContext
 
-    response_parameters_request = NSFetchRequest.alloc.init
+    response_parameters_request = NSFetchRequest.new
     response_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:context)
     response_parameters_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@", 'kind', 'response', 'name', 'value')
 
@@ -136,7 +136,7 @@ class ChillDocument < NSPersistentDocument
     begin
       context = self.managedObjectContext
 
-      request_parameters_request = NSFetchRequest.alloc.init
+      request_parameters_request = NSFetchRequest.new
       request_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:context)
       request_parameters_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@ AND %K != NIL AND %K != NIL", 'kind', 'request', 'name', 'value')
 
