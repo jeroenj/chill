@@ -1,5 +1,5 @@
 class ChillDocument < NSPersistentDocument
-  attr_accessor :request_url, :request_method, :output, :indicator, :request_headers, :headers_tab_view
+  attr_accessor :request_url, :request_method, :output, :indicator, :headers_tab_view
 
   attr_accessor :engine
 
@@ -9,11 +9,6 @@ class ChillDocument < NSPersistentDocument
       @engine.delegate = self
       self
     end
-  end
-
-  def awakeFromNib
-    @http_headers = []
-    @request_headers.dataSource = self
   end
 
   # Name of nib containing document window
@@ -41,31 +36,6 @@ class ChillDocument < NSPersistentDocument
 
 
 
-  # TableView Actions
-  def numberOfRowsInTableView(view)
-    @http_headers.size
-  end
-
-  def tableView(view, objectValueForTableColumn:column, row:index)
-    parameter = @http_headers[index]
-
-    case column.identifier
-    when 'name'  then parameter.name
-    when 'value' then parameter.value
-    end
-  end
-
-  def tableView(view, setObjectValue:object, forTableColumn:column, row:index)
-    parameter = @http_headers[index]
-    case column.identifier
-    when 'name'  then parameter.name = object
-    when 'value' then parameter.value = object
-    end
-  end
-
-
-
-
   # GUI Actions
   def rest_call(sender)
     url = NSURL.URLWithString(request_url.stringValue)
@@ -73,6 +43,7 @@ class ChillDocument < NSPersistentDocument
 
     start_indicator
     output.string = ''
+    clear_response_parameters
 
     @engine.sendRequestTo(url, usingVerb:verb, withParameters:request_parameters)
   end
@@ -85,14 +56,12 @@ class ChillDocument < NSPersistentDocument
     response = engine.httpResponse
     headers = response.allHeaderFields
 
-    @http_headers.clear
     headers.each_pair do |key, value|
-      http_header = Parameter.new
-      http_header.name = key
-      http_header.value = value
-      @http_headers << http_header
+      parameter = NSEntityDescription.insertNewObjectForEntityForName("Parameter", inManagedObjectContext:self.managedObjectContext)
+      parameter.setValue(key, forKey:'name')
+      parameter.setValue(value, forKey:'value')
+      parameter.setValue('response', forKey:'kind')
     end
-    @request_headers.reloadData
 
     text = engine.responseAsText
     if text
@@ -143,20 +112,40 @@ class ChillDocument < NSPersistentDocument
     headers_tab_view.selectLastTabViewItem(self)
   end
 
+  def clear_response_parameters
+    context = self.managedObjectContext
+
+    response_parameters_request = NSFetchRequest.alloc.init
+    response_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:context)
+    response_parameters_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@", 'kind', 'response', 'name', 'value')
+
+    error = nil
+    array = context.executeFetchRequest(response_parameters_request, error:error)
+
+    if array.size > 0
+      array.each do |parameter|
+        context.deleteObject(parameter)
+      end
+    else
+      parameters = nil
+    end
+  end
+
   def request_parameters
     parameters = {}
     begin
       context = self.managedObjectContext
 
-      all_parameters_request = NSFetchRequest.alloc.init
-      all_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:context)
+      request_parameters_request = NSFetchRequest.alloc.init
+      request_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:context)
+      request_parameters_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@ AND %K != NIL AND %K != NIL", 'kind', 'request', 'name', 'value')
 
       error = nil
-      array = context.executeFetchRequest(all_parameters_request, error:error)
+      array = context.executeFetchRequest(request_parameters_request, error:error)
 
       if array.size > 0
         array.each do |parameter|
-          parameters[parameter.valueForKey('name')] = parameter.valueForKey('value') if parameter.valueForKey('name') && parameter.valueForKey('value')
+          parameters[parameter.valueForKey('name')] = parameter.valueForKey('value')
         end
       else
         parameters = nil
