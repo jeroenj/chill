@@ -21,8 +21,8 @@ class ChillDocument < NSPersistentDocument
     array = context.executeFetchRequest(all_interface_objects_request, error:error)
 
     array.each do |obj|
-      request_url.stringValue = obj.valueForKey('value') if obj.valueForKey('name') == 'request_url'
-      output.string = obj.valueForKey('value') if obj.valueForKey('name') == 'output'
+      request_url.stringValue = obj.value if obj.name == 'request_url'
+      output.string = obj.value if obj.name == 'output'
     end
   end
 
@@ -77,9 +77,9 @@ class ChillDocument < NSPersistentDocument
 
     headers.each_pair do |key, value|
       parameter = NSEntityDescription.insertNewObjectForEntityForName("Parameter", inManagedObjectContext:self.managedObjectContext)
-      parameter.setValue(key, forKey:'name')
-      parameter.setValue(value, forKey:'value')
-      parameter.setValue('response', forKey:'kind')
+      parameter.name = key
+      parameter.value = value
+      parameter.kind = 'response'
     end
 
     text = engine.responseAsText
@@ -167,7 +167,7 @@ class ChillDocument < NSPersistentDocument
 
       if array.size > 0
         array.each do |parameter|
-          parameters[parameter.valueForKey('name')] = parameter.valueForKey('value')
+          parameters[parameter.name] = parameter.value
         end
       else
         parameters = nil
@@ -191,8 +191,8 @@ class ChillDocument < NSPersistentDocument
     case interface_objects.size
     when 0
       interface_object = NSEntityDescription.insertNewObjectForEntityForName("InterfaceObject", inManagedObjectContext:context)
-      interface_object.setValue(name, forKey:'name')
-      interface_object.setValue(value, forKey:'value')
+      interface_object.name = name
+      interface_object.value = value
     else
       interface_objects.each do |obj|
         context.deleteObject(obj)
