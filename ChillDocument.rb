@@ -11,6 +11,21 @@ class ChillDocument < NSPersistentDocument
     end
   end
 
+  def awakeFromNib
+    context = self.managedObjectContext
+
+    all_interface_objects_request = NSFetchRequest.new
+    all_interface_objects_request.entity = NSEntityDescription.entityForName('InterfaceObject', inManagedObjectContext:context)
+
+    error = nil
+    array = context.executeFetchRequest(all_interface_objects_request, error:error)
+
+    array.each do |obj|
+      request_url.stringValue = obj.valueForKey('value') if obj.valueForKey('name') == 'request_url'
+      output.string = obj.valueForKey('value') if obj.valueForKey('name') == 'output'
+    end
+  end
+
   # Name of nib containing document window
   def windowNibName
     'ChillDocument'
@@ -48,6 +63,10 @@ class ChillDocument < NSPersistentDocument
     @engine.sendRequestTo(url, usingVerb:verb, withParameters:request_parameters)
   end
 
+  def controlTextDidEndEditing(notification)
+    find_or_create_interface_object('request_url', request_url.stringValue)
+  end
+
 
 
 
@@ -64,11 +83,14 @@ class ChillDocument < NSPersistentDocument
     end
 
     text = engine.responseAsText
+
     if text
       output.string = text
       stop_indicator
       show_response_tab
     end
+
+    find_or_create_interface_object('output', text)
   end
 
   def wrapperHasBadCredentials(wrapper)
@@ -154,5 +176,28 @@ class ChillDocument < NSPersistentDocument
       puts "Error while building parameters: #{e}"
     end
     parameters
+  end
+  
+  def find_or_create_interface_object(name, value)
+    context = self.managedObjectContext
+
+    interface_objects_request = NSFetchRequest.new
+    interface_objects_request.entity = NSEntityDescription.entityForName('InterfaceObject', inManagedObjectContext:context)
+    interface_objects_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@", 'name', name)
+
+    error = nil
+    interface_objects = context.executeFetchRequest(interface_objects_request, error:error)
+
+    case interface_objects.size
+    when 0
+      interface_object = NSEntityDescription.insertNewObjectForEntityForName("InterfaceObject", inManagedObjectContext:context)
+      interface_object.setValue(name, forKey:'name')
+      interface_object.setValue(value, forKey:'value')
+    else
+      interface_objects.each do |obj|
+        context.deleteObject(obj)
+      end
+      find_or_create_interface_object(name, value)
+    end
   end
 end
