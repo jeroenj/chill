@@ -2,6 +2,7 @@
 
 * Using Core Data for Response Headers
 * More Robust Handling of Request Parameters
+* Everything needed will be saved to the file
 
 == 0.0.3
  
