@@ -1,24 +1,23 @@
 class ChillDocument < NSPersistentDocument
   attr_accessor :request_url, :request_method, :output, :indicator, :headers_tab_view
 
-  attr_accessor :engine
+  attr_accessor :engine, :context
 
   def init
     if super
       @engine = Wrapper.new
       @engine.delegate = self
+      @context = self.managedObjectContext
       self
     end
   end
 
   def awakeFromNib
-    context = self.managedObjectContext
-
     all_interface_objects_request = NSFetchRequest.new
-    all_interface_objects_request.entity = NSEntityDescription.entityForName('InterfaceObject', inManagedObjectContext:context)
+    all_interface_objects_request.entity = NSEntityDescription.entityForName('InterfaceObject', inManagedObjectContext:@context)
 
     error = nil
-    interface_objects = context.executeFetchRequest(all_interface_objects_request, error:error)
+    interface_objects = @context.executeFetchRequest(all_interface_objects_request, error:error)
 
     interface_objects.each do |obj|
       request_url.stringValue = obj.value if obj.name == 'request_url'
@@ -76,7 +75,7 @@ class ChillDocument < NSPersistentDocument
     headers = response.allHeaderFields
 
     headers.each_pair do |key, value|
-      parameter = NSEntityDescription.insertNewObjectForEntityForName("Parameter", inManagedObjectContext:self.managedObjectContext)
+      parameter = NSEntityDescription.insertNewObjectForEntityForName("Parameter", inManagedObjectContext:@context)
       parameter.name = key
       parameter.value = value
       parameter.kind = 'response'
@@ -135,31 +134,27 @@ class ChillDocument < NSPersistentDocument
   end
 
   def clear_response_parameters
-    context = self.managedObjectContext
-
     response_parameters_request = NSFetchRequest.new
-    response_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:context)
+    response_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:@context)
     response_parameters_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@", 'kind', 'response')
 
     error = nil
-    parameters = context.executeFetchRequest(response_parameters_request, error:error)
+    parameters = @context.executeFetchRequest(response_parameters_request, error:error)
 
     parameters.each do |parameter|
-      context.deleteObject(parameter)
+      @context.deleteObject(parameter)
     end
   end
 
   def request_parameters
     parameters = {}
     begin
-      context = self.managedObjectContext
-
       request_parameters_request = NSFetchRequest.new
-      request_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:context)
+      request_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:@context)
       request_parameters_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@ AND name != NIL AND value != NIL", 'kind', 'request')
 
       error = nil
-      request_parameters = context.executeFetchRequest(request_parameters_request, error:error)
+      request_parameters = @context.executeFetchRequest(request_parameters_request, error:error)
 
       if request_parameters.size > 0
         request_parameters.each do |parameter|
@@ -175,23 +170,21 @@ class ChillDocument < NSPersistentDocument
   end
   
   def find_or_create_interface_object(name, value)
-    context = self.managedObjectContext
-
     interface_objects_request = NSFetchRequest.new
-    interface_objects_request.entity = NSEntityDescription.entityForName('InterfaceObject', inManagedObjectContext:context)
+    interface_objects_request.entity = NSEntityDescription.entityForName('InterfaceObject', inManagedObjectContext:@context)
     interface_objects_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@", 'name', name)
 
     error = nil
-    interface_objects = context.executeFetchRequest(interface_objects_request, error:error)
+    interface_objects = @context.executeFetchRequest(interface_objects_request, error:error)
 
     case interface_objects.size
     when 0
-      interface_object = NSEntityDescription.insertNewObjectForEntityForName("InterfaceObject", inManagedObjectContext:context)
+      interface_object = NSEntityDescription.insertNewObjectForEntityForName("InterfaceObject", inManagedObjectContext:@context)
       interface_object.name = name
       interface_object.value = value
     else
       interface_objects.each do |obj|
-        context.deleteObject(obj)
+        @context.deleteObject(obj)
       end
       find_or_create_interface_object(name, value)
     end
