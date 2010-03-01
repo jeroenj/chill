@@ -20,8 +20,11 @@ class ChillDocument < NSPersistentDocument
     interface_objects = @context.executeFetchRequest(all_interface_objects_request, error:error)
 
     interface_objects.each do |obj|
-      request_url.stringValue = obj.value if obj.name == 'request_url'
-      output.string = obj.value if obj.name == 'output'
+      case obj.name
+      when 'request_url'    then request_url.stringValue = obj.value
+      when 'output'         then output.string = obj.value
+      when 'request_method' then request_method.selectItemWithTitle(obj.value)
+      end
     end
   end
 
@@ -64,6 +67,10 @@ class ChillDocument < NSPersistentDocument
 
   def controlTextDidEndEditing(notification)
     find_or_create_interface_object('request_url', request_url.stringValue)
+  end
+
+  def request_method_changed(sender)
+    find_or_create_interface_object('request_method', request_method.titleOfSelectedItem)
   end
 
 

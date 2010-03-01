@@ -355,7 +355,7 @@
 											<object class="NSTextFieldCell" key="NSCell" id="175795137">
 												<int key="NSCellFlags">-1808662975</int>
 												<int key="NSCellFlags2">272630784</int>
-												<string key="NSContents">http://countries.local/countries/1</string>
+												<string key="NSContents"/>
 												<reference key="NSSupport" ref="12054195"/>
 												<string key="NSPlaceholderString">request url</string>
 												<reference key="NSControlView" ref="759550626"/>
@@ -1180,6 +1180,14 @@
 					</object>
 					<int key="connectionID">694</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">request_method_changed:</string>
+						<reference key="source" ref="1021"/>
+						<reference key="destination" ref="308380203"/>
+					</object>
+					<int key="connectionID">696</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1694,7 +1702,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{986, 733}, {116, 83}}</string>
+					<string>{{541, 456}, {116, 83}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1751,7 +1759,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">694</int>
+			<int key="maxID">696</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1760,13 +1768,23 @@
 					<string key="className">ChillDocument</string>
 					<string key="superclassName">NSPersistentDocument</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">rest_call:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>request_method_changed:</string>
+							<string>rest_call:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>context</string>
 							<string>engine</string>
 							<string>headers_tab_view</string>
 							<string>indicator</string>
@@ -1776,6 +1794,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
