@@ -18,9 +18,9 @@ class ChillDocument < NSPersistentDocument
     all_interface_objects_request.entity = NSEntityDescription.entityForName('InterfaceObject', inManagedObjectContext:context)
 
     error = nil
-    array = context.executeFetchRequest(all_interface_objects_request, error:error)
+    interface_objects = context.executeFetchRequest(all_interface_objects_request, error:error)
 
-    array.each do |obj|
+    interface_objects.each do |obj|
       request_url.stringValue = obj.value if obj.name == 'request_url'
       output.string = obj.value if obj.name == 'output'
     end
@@ -139,17 +139,13 @@ class ChillDocument < NSPersistentDocument
 
     response_parameters_request = NSFetchRequest.new
     response_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:context)
-    response_parameters_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@", 'kind', 'response', 'name', 'value')
+    response_parameters_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@", 'kind', 'response')
 
     error = nil
-    array = context.executeFetchRequest(response_parameters_request, error:error)
+    parameters = context.executeFetchRequest(response_parameters_request, error:error)
 
-    if array.size > 0
-      array.each do |parameter|
-        context.deleteObject(parameter)
-      end
-    else
-      parameters = nil
+    parameters.each do |parameter|
+      context.deleteObject(parameter)
     end
   end
 
@@ -160,13 +156,13 @@ class ChillDocument < NSPersistentDocument
 
       request_parameters_request = NSFetchRequest.new
       request_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:context)
-      request_parameters_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@ AND %K != NIL AND %K != NIL", 'kind', 'request', 'name', 'value')
+      request_parameters_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@ AND name != NIL AND value != NIL", 'kind', 'request')
 
       error = nil
-      array = context.executeFetchRequest(request_parameters_request, error:error)
+      request_parameters = context.executeFetchRequest(request_parameters_request, error:error)
 
-      if array.size > 0
-        array.each do |parameter|
+      if request_parameters.size > 0
+        request_parameters.each do |parameter|
           parameters[parameter.name] = parameter.value
         end
       else
