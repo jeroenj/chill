@@ -194,7 +194,7 @@
 													<double key="NSPercent">0.94565218687057495</double>
 												</object>
 											</object>
-											<string key="NSFrame">{{-1, 0}, {540, 176}}</string>
+											<string key="NSFrameSize">{540, 176}</string>
 											<reference key="NSSuperview" ref="403065391"/>
 											<reference key="NSNextKeyView" ref="662960574"/>
 											<int key="NSsFlags">560</int>
