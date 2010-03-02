@@ -1,5 +1,5 @@
 class ChillDocument < NSPersistentDocument
-  attr_accessor :request_url, :request_method, :output, :indicator, :headers_tab_view
+  attr_accessor :request_url, :request_method, :output, :indicator, :headers_tab_view, :authentication_sheet, :chill_window, :authtentication_button, :http_username, :http_password
 
   attr_accessor :engine, :context
 
@@ -24,8 +24,12 @@ class ChillDocument < NSPersistentDocument
       when 'request_url'    then request_url.stringValue = obj.value
       when 'output'         then output.string = obj.value
       when 'request_method' then request_method.selectItemWithTitle(obj.value)
+      when 'http_username'  then http_username.stringValue = obj.value
+      when 'http_password'  then http_password.stringValue = obj.value
       end
     end
+
+    refresh_lock
   end
 
   # Name of nib containing document window
@@ -76,6 +80,32 @@ class ChillDocument < NSPersistentDocument
 
 
 
+  # Authentication sheet
+  def show_authentication_sheet(sender)
+    NSApp.beginSheet(authentication_sheet, modalForWindow:chill_window, modalDelegate:self, didEndSelector:"authentication_sheet_did_end", contextInfo:nil)
+  end
+
+  def accept_authentication(sender)
+    NSApp.endSheet(authentication_sheet)
+    @engine.username = http_username.stringValue
+    @engine.password = http_password.stringValue
+    find_or_create_interface_object('http_username', http_username.stringValue)
+    find_or_create_interface_object('http_password', http_password.stringValue)
+    rest_call(nil)
+  end
+
+  def cancel_authentication(sender)
+    NSApp.endSheet(authentication_sheet)
+  end
+
+  def authentication_sheet_did_end
+    authentication_sheet.orderOut(self)
+    refresh_lock
+  end
+
+
+
+
   # REST Wrapper Delegates
   def wrapper(engine, didRetrieveData:data)
     response = engine.httpResponse
@@ -100,10 +130,8 @@ class ChillDocument < NSPersistentDocument
   end
 
   def wrapperHasBadCredentials(wrapper)
-    # handle this in here by showing an overlay in which you can enter your credentials
     stop_indicator
-    alert = NSAlert.alertWithMessageText("Bad credentials!", defaultButton:"OK", alternateButton:nil, otherButton:nil, informativeTextWithFormat:"Please specify a valid username and password")
-    alert.runModal
+    show_authentication_sheet(nil)
   end
 
   def wrapper(wrapper, didCreateResourceAtURL:url)
@@ -113,9 +141,12 @@ class ChillDocument < NSPersistentDocument
   end
 
   def wrapper(wrapper, didFailWithError:error)
-    stop_indicator
-    alert = NSAlert.alertWithError(error)
-    alert.runModal
+    # -1012 is bad credentials
+    unless error.code == -1012
+      stop_indicator
+      alert = NSAlert.alertWithError(error)
+      alert.runModal
+    end
   end
 
   #def wrapper(wrapper, didReceiveStatusCode:statusCode)
@@ -134,6 +165,14 @@ class ChillDocument < NSPersistentDocument
   def stop_indicator
     indicator.setHidden(true)
     indicator.stopAnimation(self)
+  end
+
+  def refresh_lock
+    if http_username.stringValue.empty? && http_password.stringValue.empty?
+      authtentication_button.setImage(NSImage.imageNamed("NSLockUnlockedTemplate"))
+    else
+      authtentication_button.setImage(NSImage.imageNamed("NSLockLockedTemplate"))
+    end
   end
 
   def show_response_tab
