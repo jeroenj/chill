@@ -66,6 +66,11 @@ hr {
   list-style-type: none;
 }
 
+.download li span {
+  float: right;
+  width: 90px;
+}
+
 .download a {
   text-decoration: none;
 }
@@ -84,4 +89,8 @@ hr {
 .footer {
   text-align:center;
   padding: 30px 0 12px 0;
+}
+
+.small {
+  font-size: 10px;
 }
