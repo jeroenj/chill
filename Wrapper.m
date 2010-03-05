@@ -35,7 +35,7 @@
         conn = nil;
 
         asynchronous = YES;
-        mimeType = @"text/html";
+        mimeType = @"application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
         delegate = nil;
         username = @"";
         password = @"";
