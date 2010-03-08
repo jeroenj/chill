@@ -1,3 +1,7 @@
+== repository
+* Fixed default accept headers
+* Obj-C HTTP Wrapper has been replaced by a custom HTTP Wrapper in MacRuby
+
 == 0.1.1 (March 2, 2010)
 * Greatly enhanced support for http authentication
 
