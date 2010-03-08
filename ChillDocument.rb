@@ -1,11 +1,9 @@
 class ChillDocument < NSPersistentDocument
   attr_accessor :request_url, :request_method, :output, :indicator, :headers_tab_view, :authentication_sheet, :chill_window, :authtentication_button, :http_username, :http_password
 
-  attr_accessor :engine, :context
-
   def init
     if super
-      @engine = Wrapper.new
+      @engine = HTTPWrapper.instance
       @engine.delegate = self
       @context = self.managedObjectContext
       self
@@ -59,14 +57,11 @@ class ChillDocument < NSPersistentDocument
 
   # GUI Actions
   def rest_call(sender)
-    url = NSURL.URLWithString(request_url.stringValue)
-    verb = request_method.titleOfSelectedItem
-
     start_indicator
     output.string = ''
     clear_response_parameters
 
-    @engine.sendRequestTo(url, usingVerb:verb, withParameters:request_parameters)
+    @engine.send_request_to(request_url.stringValue, {:verb => request_method.titleOfSelectedItem, :parameters => request_parameters})
   end
 
   def controlTextDidEndEditing(notification)
@@ -106,9 +101,8 @@ class ChillDocument < NSPersistentDocument
 
 
 
-  # REST Wrapper Delegates
-  def wrapper(engine, didRetrieveData:data)
-    response = engine.httpResponse
+  # HTTPWrapper Delegates
+  def did_receive_data(data, with_response:response)
     headers = response.allHeaderFields
 
     headers.each_pair do |key, value|
@@ -118,7 +112,7 @@ class ChillDocument < NSPersistentDocument
       parameter.kind = 'response'
     end
 
-    text = engine.responseAsText
+    text = NSString.alloc.initWithData(data, encoding:NSUTF8StringEncoding)
 
     if text
       output.string = text
@@ -129,18 +123,12 @@ class ChillDocument < NSPersistentDocument
     find_or_create_interface_object('output', text)
   end
 
-  def wrapperHasBadCredentials(wrapper)
+  def did_receive_authentication_challenge
     stop_indicator
     show_authentication_sheet(nil)
   end
 
-  def wrapper(wrapper, didCreateResourceAtURL:url)
-    stop_indicator
-    alert = NSAlert.alertWithMessageText("Resource created at #{url}", defaultButton:"OK", alternateButton:nil, otherButton:nil, informativeTextWithFormat:"")
-    alert.runModal
-  end
-
-  def wrapper(wrapper, didFailWithError:error)
+  def did_fail_with_error(error)
     # -1012 is bad credentials
     unless error.code == -1012
       stop_indicator
@@ -148,12 +136,6 @@ class ChillDocument < NSPersistentDocument
       alert.runModal
     end
   end
-
-  #def wrapper(wrapper, didReceiveStatusCode:statusCode)
-  # stop_indicator
-  # alert = NSAlert.alertWithMessageText("Status code not OK", defaultButton:"OK", alternateButton:nil, otherButton:nil, informativeTextWithFormat:"I am an alert!")
-  # alert.runModal
-  #end
 
   private
 

@@ -58,7 +58,7 @@
 		1C40D8F7111C49F50056A5B8 /* ChillDocument.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1C40D8F6111C49F50056A5B8 /* ChillDocument.rb */; };
 		1C40D957111C529F0056A5B8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C40D955111C529F0056A5B8 /* MainMenu.xib */; };
 		1C8D62F11125656300AF8912 /* Chill.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1C8D62F01125656300AF8912 /* Chill.xcdatamodel */; };
-		1CD4F0AE11008D0C00C9B6FB /* Wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4F0AD11008D0C00C9B6FB /* Wrapper.m */; };
+		1C93359E114148150000FBD1 /* HTTPWrapper.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1C93359D114148150000FBD1 /* HTTPWrapper.rb */; };
 		2BFA9DA710CDF852007972A1 /* ChillDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFA9DA510CDF852007972A1 /* ChillDocument.xib */; };
 		4DE339F70D74FCDD00ADB6EE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4DE339F60D74FCDD00ADB6EE /* rb_main.rb */; };
 		4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE3BE130D8651D900ECA448 /* MacRuby.framework */; };
@@ -89,9 +89,7 @@
 		1C40D8F6111C49F50056A5B8 /* ChillDocument.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ChillDocument.rb; sourceTree = "<group>"; };
 		1C40D956111C529F0056A5B8 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1C8D62F01125656300AF8912 /* Chill.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Chill.xcdatamodel; sourceTree = "<group>"; };
-		1CD4F0AB11008D0C00C9B6FB /* WrapperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapperDelegate.h; sourceTree = "<group>"; };
-		1CD4F0AC11008D0C00C9B6FB /* Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wrapper.h; sourceTree = "<group>"; };
-		1CD4F0AD11008D0C00C9B6FB /* Wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wrapper.m; sourceTree = "<group>"; };
+		1C93359D114148150000FBD1 /* HTTPWrapper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = HTTPWrapper.rb; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -118,11 +116,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1CD4F0AB11008D0C00C9B6FB /* WrapperDelegate.h */,
-				1CD4F0AC11008D0C00C9B6FB /* Wrapper.h */,
-				1CD4F0AD11008D0C00C9B6FB /* Wrapper.m */,
 				1C283DF610F8D00F00E6B71A /* SplitViewDelegate.rb */,
 				1C40D8F6111C49F50056A5B8 /* ChillDocument.rb */,
+				1C93359D114148150000FBD1 /* HTTPWrapper.rb */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -268,6 +264,7 @@
 				1C283DF710F8D00F00E6B71A /* SplitViewDelegate.rb in Resources */,
 				1C40D8F7111C49F50056A5B8 /* ChillDocument.rb in Resources */,
 				1C40D957111C529F0056A5B8 /* MainMenu.xib in Resources */,
+				1C93359E114148150000FBD1 /* HTTPWrapper.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +331,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				1CD4F0AE11008D0C00C9B6FB /* Wrapper.m in Sources */,
 				1C8D62F11125656300AF8912 /* Chill.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
