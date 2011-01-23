@@ -1,6 +1,7 @@
 == git master
 * Fixed unclarities about request headers. They were actually data instead of headers.
 * Added capabilities to add custom request headers
+* Changed identifier to be jeroenj instead of redstorm.
 
 == 0.1.2 (March 9, 2010)
 * Fixed default accept headers
@@ -16,15 +17,15 @@
 * Everything needed will be saved to the file
 
 == 0.0.3
- 
+
 * Target to compile and embed MacRuby (Xcode)
 * Fixed some GUI glitches
 * Bundle identifier is be.redstorm.Chill now (instead of com.redstorm.Chill)
- 
+
 == 0.0.2
- 
+
 * Switched to Core Data for the parameters table. This allows you to save the params to a file.
- 
+
 == 0.0.1
- 
+
 * Initial release
