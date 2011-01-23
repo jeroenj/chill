@@ -18,6 +18,7 @@ class HTTPWrapper
   def send_request_to(url, args={})
     verb = args[:verb]
     parameters = args[:parameters]
+    headers = args[:headers] || {}
     params = parameters ? parameters.collect{|name, value| "#{CGI.escape(name)}=#{CGI.escape(value)}"}.join('&') : ''
 
     if (verb == 'POST' || verb == 'PUT')
@@ -28,7 +29,7 @@ class HTTPWrapper
       request_url = NSURL.URLWithString(params.empty? ? url : "#{url}?#{params}")
     end
 
-    headers = {}
+    #TODO: These should be default headers which are overrideable.
     headers['Content-Type']   = content_type
     headers['Accept']         = @mime_type
     headers['Cache-Control']  = 'no-cache'
@@ -37,6 +38,9 @@ class HTTPWrapper
 
     request = NSMutableURLRequest.requestWithURL(request_url, cachePolicy:NSURLRequestUseProtocolCachePolicy, timeoutInterval:60)
     request.setHTTPMethod(verb)
+
+    # HTTPHeaders are case insensitive: http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2
+    # NSMutableURLRequest automatically transforms them into a lowercase string with a capitalized first letters: FOO-BAR would become Foo-Bar.
     request.setAllHTTPHeaderFields(headers)
     request.setHTTPBody(params.dataUsingEncoding(NSUTF8StringEncoding)) unless verb == 'GET' || params.empty?
 

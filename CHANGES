@@ -1,3 +1,7 @@
+== git master
+* Fixed unclarities about request headers. They were actually data instead of headers.
+* Added capabilities to add custom request headers
+
 == 0.1.2 (March 9, 2010)
 * Fixed default accept headers
 * Obj-C HTTP Wrapper has been replaced by a custom HTTP Wrapper in MacRuby

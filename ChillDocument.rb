@@ -61,7 +61,7 @@ class ChillDocument < NSPersistentDocument
     output.string = ''
     clear_response_parameters
 
-    @engine.send_request_to(request_url.stringValue, {:verb => request_method.titleOfSelectedItem, :parameters => request_parameters})
+    @engine.send_request_to(request_url.stringValue, {:verb => request_method.titleOfSelectedItem, :parameters => request_body, :headers => request_headers})
   end
 
   def controlTextDidEndEditing(notification)
@@ -174,27 +174,50 @@ class ChillDocument < NSPersistentDocument
     end
   end
 
-  def request_parameters
-    parameters = {}
+  def request_body
+    data = {}
     begin
-      request_parameters_request = NSFetchRequest.new
-      request_parameters_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:@context)
-      request_parameters_request.predicate = NSPredicate.predicateWithFormat("%K LIKE %@ AND name != NIL AND value != NIL", 'kind', 'request')
+      request_body_request = NSFetchRequest.new
+      request_body_request.entity = NSEntityDescription.entityForName('DataObject', inManagedObjectContext:@context)
+      # request_body_request.predicate = NSPredicate.predicateWithFormat("(name != NIL) AND (value != NIL)")
 
       error = nil
-      request_parameters = @context.executeFetchRequest(request_parameters_request, error:error)
+      body_objects = @context.executeFetchRequest(request_body_request, error:error)
 
-      if request_parameters.size > 0
-        request_parameters.each do |parameter|
-          parameters[parameter.name] = parameter.value
+      if body_objects.size > 0
+        body_objects.each do |body_object|
+          data[body_object.name] = body_object.value if body_object.name && body_object.value # Filtering should be done with NSPredicate
         end
       else
-        parameters = nil
+        data = nil
       end
     rescue => e
-      puts "Error while building parameters: #{e}"
+      puts "Error while building request body: #{e}"
     end
-    parameters
+    data
+  end
+  
+  def request_headers
+    data = {}
+    begin
+      request_headers_request = NSFetchRequest.new
+      request_headers_request.entity = NSEntityDescription.entityForName('Parameter', inManagedObjectContext:@context)
+      # request_headers_request.predicate = NSPredicate.predicateWithFormat("(name != NIL) AND (value != NIL)")
+
+      error = nil
+      header_objects = @context.executeFetchRequest(request_headers_request, error:error)
+
+      if header_objects.size > 0
+        header_objects.each do |header_object|
+          data[header_object.name] = header_object.value if header_object.name && header_object.value # Filtering should be done with NSPredicate
+        end
+      else
+        data = nil
+      end
+    rescue => e
+      puts "Error while building request headers: #{e}"
+    end
+    data
   end
   
   def find_or_create_interface_object(name, value)
