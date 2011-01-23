@@ -42,4 +42,4 @@ You can find this in {Lighthouse}[http://redstorm.lighthouseapp.com/projects/467
 
 == Copyright
 
-Copyright (c) 2010 Jeroen Jacobs, {redstorm sprl}[http://www.redstorm.be]. See LICENSE for details.
+Copyright (c) 2010-2011 {Jeroen Jacobs}[http://jeroenj.be]. See {LICENSE}[https://github.com/jeroenj/chill/blob/master/LICENSE] for details.
