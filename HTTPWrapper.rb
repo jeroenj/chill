@@ -30,11 +30,11 @@ class HTTPWrapper
     end
 
     #TODO: These should be default headers which are overrideable.
-    headers['Content-Type']   = content_type
-    headers['Accept']         = @mime_type
-    headers['Cache-Control']  = 'no-cache'
-    headers['Pragma']         = 'no-cache'
-    headers['Connection']     = 'close' # Avoid HTTP 1.1 "keep alive" for the connection
+    headers['Content-Type']   ||= content_type
+    headers['Accept']         ||= @mime_type
+    headers['Cache-Control']  ||= 'no-cache'
+    headers['Pragma']         ||= 'no-cache'
+    headers['Connection']     ||= 'close' # Avoid HTTP 1.1 "keep alive" for the connection
 
     request = NSMutableURLRequest.requestWithURL(request_url, cachePolicy:NSURLRequestUseProtocolCachePolicy, timeoutInterval:60)
     request.setHTTPMethod(verb)
